@@ -17,7 +17,7 @@ const loadMoreButton = document.getElementById('load-more');
 let page = 1;
 let searchQuery = '';
 
-loader.classList.add('hidden');
+loader.classList.add('is-hidden');
 
 form.addEventListener('submit', async event => {
   event.preventDefault();
@@ -32,9 +32,14 @@ form.addEventListener('submit', async event => {
 
   gallery.innerHTML = '';
   loadMoreButton.classList.add('hidden');
-  loader.classList.remove('hidden');
+
+  // console.log('Adding is-hidden to loader');
+  loader.classList.remove('is-hidden');
+
   await loadImages();
-  loader.classList.add('hidden');
+
+  // console.log('Removing is-hidden from loader');
+  loader.classList.add('is-hidden');
 });
 
 async function loadImages() {
@@ -63,9 +68,9 @@ function toggleLoadMoreButton(resultsCount) {
 
 loadMoreButton.addEventListener('click', async () => {
   page += 1;
-  loader.classList.remove('hidden');
+  loader.classList.remove('is-hidden');
   await loadImages();
-  loader.classList.add('hidden');
+  loader.classList.add('is-hidden');
   scrollPage();
 });
 
